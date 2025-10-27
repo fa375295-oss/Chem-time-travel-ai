@@ -24,7 +24,7 @@ if st.session_state.stage == "intro":
         st.session_state.stage = "quiz"
         st.session_state.index = 0
         st.session_state.score = 0
-        st.experimental_rerun()
+        st.rerun()
 
 elif st.session_state.stage == "quiz":
     idx = st.session_state.index
@@ -45,11 +45,11 @@ elif st.session_state.stage == "quiz":
         if idx < len(scientists) - 1:
             if st.button("التالي ➡️"):
                 st.session_state.index += 1
-                st.experimental_rerun()
+                st.rerun()
         else:
             if st.button("شاهد نتيجتك 🏁"):
                 st.session_state.stage = "result"
-                st.experimental_rerun()
+                st.rerun()
 
 elif st.session_state.stage == "result":
     st.title("🏁 نهاية الرحلة!")
@@ -66,7 +66,7 @@ elif st.session_state.stage == "result":
 
     if st.button("إعادة المحاولة 🔄"):
         st.session_state.stage = "intro"
-        st.experimental_rerun()
+        st.rerun()
 
 st.markdown("---")
 st.caption("تم الإنشاء بواسطة 🤖 الذكاء الاصطناعي | مشروع تعليمي ممتع عن تاريخ الكيمياء")
