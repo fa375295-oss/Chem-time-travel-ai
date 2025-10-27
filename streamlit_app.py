@@ -25,7 +25,8 @@ if st.session_state.stage == "intro":
         st.session_state.index = 0
         st.session_state.score = 0
         st.experimental_rerun()
-        elif st.session_state.stage == "quiz":
+
+elif st.session_state.stage == "quiz":
     idx = st.session_state.index
     scientist = scientists[idx]
     st.header(f"من هو {scientist['name']}؟")
@@ -40,6 +41,7 @@ if st.session_state.stage == "intro":
         else:
             st.error(f"خطأ ❌ الإجابة الصحيحة هي: {scientist['century']}")
         st.info(f"معلومة إضافية: {scientist['fact']}")
+        
         if idx < len(scientists) - 1:
             if st.button("التالي ➡️"):
                 st.session_state.index += 1
@@ -52,7 +54,8 @@ if st.session_state.stage == "intro":
 elif st.session_state.stage == "result":
     st.title("🏁 نهاية الرحلة!")
     st.write(f"نتيجتك: {st.session_state.score} من {len(scientists)} 🌟")
-medals = ["🥇", "🥈", "🥉"]
+
+    medals = ["🥇", "🥈", "🥉"]
     if st.session_state.score == len(scientists):
         st.balloons()
         st.success(f"{medals[0]} عبقري الكيمياء!")
