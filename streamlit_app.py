@@ -24,9 +24,8 @@ if st.session_state.stage == "intro":
         st.session_state.stage = "quiz"
         st.session_state.index = 0
         st.session_state.score = 0
-        st.rerun()
-
-elif st.session_state.stage == "quiz":
+        st.experimental_rerun()
+        elif st.session_state.stage == "quiz":
     idx = st.session_state.index
     scientist = scientists[idx]
     st.header(f"من هو {scientist['name']}؟")
@@ -44,17 +43,16 @@ elif st.session_state.stage == "quiz":
         if idx < len(scientists) - 1:
             if st.button("التالي ➡️"):
                 st.session_state.index += 1
-                st.rerun()
+                st.experimental_rerun()
         else:
             if st.button("شاهد نتيجتك 🏁"):
                 st.session_state.stage = "result"
-                st.rerun()
+                st.experimental_rerun()
 
 elif st.session_state.stage == "result":
     st.title("🏁 نهاية الرحلة!")
     st.write(f"نتيجتك: {st.session_state.score} من {len(scientists)} 🌟")
-
-    medals = ["🥇", "🥈", "🥉"]
+medals = ["🥇", "🥈", "🥉"]
     if st.session_state.score == len(scientists):
         st.balloons()
         st.success(f"{medals[0]} عبقري الكيمياء!")
@@ -65,7 +63,7 @@ elif st.session_state.stage == "result":
 
     if st.button("إعادة المحاولة 🔄"):
         st.session_state.stage = "intro"
-        st.rerun()
+        st.experimental_rerun()
 
 st.markdown("---")
 st.caption("تم الإنشاء بواسطة 🤖 الذكاء الاصطناعي | مشروع تعليمي ممتع عن تاريخ الكيمياء")
