@@ -42,13 +42,19 @@ elif st.session_state.stage == "quiz":
             st.error(f"خطأ ❌ الإجابة الصحيحة هي: {scientist['century']}")
         st.info(f"معلومة إضافية: {scientist['fact']}")
         
+        # الانتقال التلقائي للسؤال التالي
+        st.session_state.answered = True
+
+    if st.session_state.get('answered', False):
         if idx < len(scientists) - 1:
-            if st.button("التالي ➡️"):
+            if st.button("السؤال التالي ➡️"):
                 st.session_state.index += 1
+                st.session_state.answered = False
                 st.rerun()
         else:
             if st.button("شاهد نتيجتك 🏁"):
                 st.session_state.stage = "result"
+                st.session_state.answered = False
                 st.rerun()
 
 elif st.session_state.stage == "result":
@@ -66,6 +72,8 @@ elif st.session_state.stage == "result":
 
     if st.button("إعادة المحاولة 🔄"):
         st.session_state.stage = "intro"
+        st.session_state.score = 0
+        st.session_state.index = 0
         st.rerun()
 
 st.markdown("---")
